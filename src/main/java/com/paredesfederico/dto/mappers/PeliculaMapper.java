@@ -88,6 +88,33 @@ public class PeliculaMapper {
 	}
 	
 	
+	public PeliculaDTO peliculaToPeliculaDTO (Pelicula pelicula) {
+		
+		PeliculaDTO peliculaDTO = new PeliculaDTO();
+		
+		peliculaDTO.setTitulo(pelicula.getTitulo());
+		
+		peliculaDTO.setUrlWeb(pelicula.getUrlWeb());
+		
+		peliculaDTO.setNombreImagen(pelicula.getImagenPelicula().getNombreArchivo());
+		
+		List<String> stringGeneros = pelicula.getGeneros().stream()
+				.map(p-> p.getNombreGenero()).collect(Collectors.toList());
+		
+		peliculaDTO.setGeneros(stringGeneros);
+		
+		peliculaDTO.setImagenPelicula(pelicula.getImagenPelicula().getImagen());
+		
+		return peliculaDTO;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

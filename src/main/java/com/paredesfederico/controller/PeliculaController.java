@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.paredesfederico.dto.PeliculaDTO;
 import com.paredesfederico.dto.ResumenPeliculaDTO;
 import com.paredesfederico.services.IPeliculaService;
 
@@ -34,4 +37,18 @@ public class PeliculaController {
 		return new ResponseEntity<>(resumenPeliculaDTO, HttpStatus.CREATED);
 	}
 
+	
+	@GetMapping("/findByTitle/{titulo}")
+	public ResponseEntity<List<PeliculaDTO>> buscarPorTitulo (@PathVariable String titulo){
+		
+		List<PeliculaDTO> peliculas = peliculaService.buscarPorTitulo(titulo);
+		
+		return ResponseEntity.ok(peliculas);
+		
+		
+		
+		
+		
+		
+	}
 }

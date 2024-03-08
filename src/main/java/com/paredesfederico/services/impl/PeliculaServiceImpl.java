@@ -1,6 +1,8 @@
 package com.paredesfederico.services.impl;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,6 +66,19 @@ public class PeliculaServiceImpl implements IPeliculaService {
 		
 		// TODO Auto-generated method stub
 		return resumenPeliculaDTO;
+	}
+
+	@Override
+	public List<PeliculaDTO> buscarPorTitulo(String titulo) {
+		
+		List<Pelicula> peliculas = peliculaRepository.findByTituloContainingIgnoreCase(titulo);
+		
+		List<PeliculaDTO> peliculasDTO = peliculas.stream()
+				.map(p->{ PeliculaDTO peliculaDTO = peliculaMapper.peliculaToPeliculaDTO(p);
+				  return peliculaDTO;
+				}).collect(Collectors.toList());	
+		// TODO Auto-generated method stub
+		return peliculasDTO;
 	}
 
 }
