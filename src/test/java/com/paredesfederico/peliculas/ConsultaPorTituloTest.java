@@ -32,7 +32,7 @@ public class ConsultaPorTituloTest {
 	
 	
 	@Test
-	public void validarConsulta() throws IOException {
+	public void validarConsultaPorTitulo() throws IOException {
 		
 		String[] paths = {"./resources/TheLovelyBones.jpg","./resources/VanillaSky.jpg","./resources/Orphan.jpg",
 				"./resources/ResidentEvil2.jpg","./resources/ResidentEvil4.jpg"};
@@ -136,11 +136,11 @@ public class ConsultaPorTituloTest {
         
         assertThat(peliculasBuscadasPorTitulo.size()).isEqualTo(2);
         
-        peliculaRepository.deleteAll();
+        /*peliculaRepository.deleteAll();
         
         generoRepository.deleteAll();
         
-        assertTrue(peliculaRepository.findAll().isEmpty() && generoRepository.findAll().isEmpty());
+        assertTrue(peliculaRepository.findAll().isEmpty() && generoRepository.findAll().isEmpty());*/
 		
 	}
 	
