@@ -45,8 +45,9 @@ public class ConsultaPorTituloTest {
 		
 		String[] fileNames = {"TheLovelyBones.jpg","VanillaSky.jpg","Orphan.jpg","ResidentEvil2.jpg","ResidentEvil4.jpg"};
 		
-		String[] genres = {"Drama","Fantasía","Misterio","Terror","Romance","Accion"};
 		
+		String[] genres = {"Drama","Fantasía","Misterio","Terror","Romance","Accion","Aventura","Historia",
+				"Ciencia Ficción","Suspenso"};
 		String[] titles = {"Desde Mi Cielo","Vanilla Sky","La Huerfana","Resident Evil 2","Resident Evil 4"};
 		
 		List<Genero> genreObjects = new ArrayList<>();
@@ -63,6 +64,7 @@ public class ConsultaPorTituloTest {
 			
 			
 		}
+		
 		
 		for(int i=0;i<titles.length;i++) {
 			
@@ -100,6 +102,8 @@ public class ConsultaPorTituloTest {
 				generos.add(genreObjects.get(2));
 				
 	            generos.add(genreObjects.get(3));
+	            
+	            generos.add(genreObjects.get(9));
 	
 				pelicula.setGeneros(generos);
 
