@@ -3,7 +3,6 @@ package com.paredesfederico.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,13 +22,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.paredesfederico.dto.PeliculaDTO;
 import com.paredesfederico.dto.ResumenPeliculaDTO;
-import com.paredesfederico.entidades.Pelicula;
 import com.paredesfederico.services.IGeneroService;
 import com.paredesfederico.services.IPeliculaService;
 
 
 @RestController
-@RequestMapping(value = "api/movies")
+@RequestMapping("api/movies")
 public class PeliculaController {
 
 	@Autowired
@@ -50,7 +48,7 @@ public class PeliculaController {
 	}
 	
 	
-	@GetMapping("/findByTitle/{titulo}")
+	@GetMapping("/findbytitle/{titulo}")
 	public ResponseEntity<List<PeliculaDTO>> buscarPorTitulo (@PathVariable String titulo){
 		
 		List<PeliculaDTO> peliculas = peliculaService.buscarPorTitulo(titulo);
@@ -58,7 +56,7 @@ public class PeliculaController {
 		return ResponseEntity.ok(peliculas);	
 	}
 	
-	@GetMapping("/findByGenre/{genero}")
+	@GetMapping("/findbygenre/{genero}")
 	public ResponseEntity<List<PeliculaDTO>> buscarPorGenero (@PathVariable String genero){
 		
 		List<PeliculaDTO> peliculas = generoService.obtenerPorGenero(genero);			
@@ -67,7 +65,7 @@ public class PeliculaController {
 	
 	}
 	
-	@GetMapping("/getAll")
+	@GetMapping("/getall")
 	public ResponseEntity<List<PeliculaDTO>> obtenerTodasLasPeliculas(){
 		
 		List<PeliculaDTO> peliculasDTO = peliculaService.obtenerTodos();
@@ -77,7 +75,7 @@ public class PeliculaController {
 	}
 	
 	
-	@DeleteMapping("/deleteById/{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<HashMap<String, Boolean>> eliminarPeliculaPorId(@PathVariable Integer id){
 		
 		HashMap<String, Boolean> response = peliculaService.eliminarPeliculaPorId(id);
