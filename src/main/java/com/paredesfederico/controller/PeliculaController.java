@@ -49,28 +49,28 @@ public class PeliculaController {
 	
 	
 	@GetMapping("/findbytitle/{titulo}")
-	public ResponseEntity<List<PeliculaDTO>> buscarPorTitulo (@PathVariable String titulo){
+	public ResponseEntity<List<ResumenPeliculaDTO>> buscarPorTitulo (@PathVariable String titulo){
 		
-		List<PeliculaDTO> peliculas = peliculaService.buscarPorTitulo(titulo);
+		List<ResumenPeliculaDTO> peliculasResumidas = peliculaService.buscarPorTitulo(titulo);
 		
-		return ResponseEntity.ok(peliculas);	
+		return ResponseEntity.ok(peliculasResumidas);	
 	}
 	
 	@GetMapping("/findbygenre/{genero}")
-	public ResponseEntity<List<PeliculaDTO>> buscarPorGenero (@PathVariable String genero){
+	public ResponseEntity<List<ResumenPeliculaDTO>> buscarPorGenero (@PathVariable String genero){
 		
-		List<PeliculaDTO> peliculas = generoService.obtenerPorGenero(genero);			
+		List<ResumenPeliculaDTO> peliculasResumidas = generoService.obtenerPorGenero(genero);	 		
 		
-       return  new ResponseEntity<>(peliculas, HttpStatus.ACCEPTED);		
+       return  new ResponseEntity<>(peliculasResumidas, HttpStatus.ACCEPTED);		
 	
 	}
 	
 	@GetMapping("/getall")
-	public ResponseEntity<List<PeliculaDTO>> obtenerTodasLasPeliculas(){
+	public ResponseEntity<List<ResumenPeliculaDTO>> obtenerTodasLasPeliculas(){
 		
-		List<PeliculaDTO> peliculasDTO = peliculaService.obtenerTodos();
+		List<ResumenPeliculaDTO> peliculasResumidas = peliculaService.obtenerTodos();
 		
-		return new ResponseEntity<>(peliculasDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(peliculasResumidas, HttpStatus.ACCEPTED);
 		
 	}
 	

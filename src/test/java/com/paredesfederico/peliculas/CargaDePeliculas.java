@@ -2262,7 +2262,7 @@ public class CargaDePeliculas {
 		
 		ImagenPelicula imagenPelicula87 = new ImagenPelicula();
 		
-		imagenPelicula87.setNombreArchivo("Preomonicion.jpg");
+		imagenPelicula87.setNombreArchivo("Premonicion.jpg");
 		
 		imagenPelicula87.setImagen(mapperFiles.inputStreamToBytesArray(getClass().getResourceAsStream("./resources/Premonicion.jpg")));
 		

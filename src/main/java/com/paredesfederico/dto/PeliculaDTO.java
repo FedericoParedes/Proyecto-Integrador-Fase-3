@@ -4,7 +4,6 @@ import java.util.List;
 
 import lombok.Data;
 
-
 @Data
 public class PeliculaDTO {
 
@@ -17,8 +16,9 @@ public class PeliculaDTO {
 	private String nombreImagen;
 	
 	private List<String> generos;
-
-
+	
+	
+	
 	
 	
 	

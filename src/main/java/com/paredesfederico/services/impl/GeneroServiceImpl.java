@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.paredesfederico.dto.PeliculaDTO;
+import com.paredesfederico.dto.ResumenPeliculaDTO;
 import com.paredesfederico.dto.mappers.PeliculaMapper;
 import com.paredesfederico.entidades.Genero;
 import com.paredesfederico.repository.IGeneroRepository;
@@ -25,18 +25,18 @@ public class GeneroServiceImpl implements IGeneroService{
 	
 	
 	@Override
-	public List<PeliculaDTO> obtenerPorGenero(String genero) {
+	public List<ResumenPeliculaDTO> obtenerPorGenero(String genero) {
 		// TODO Auto-generated method stub
 		
 		Genero generoBuscado = generoRepository.findByNombreGenero(genero);
 		
-		List<PeliculaDTO> peliculas = generoBuscado.getPeliculas().stream()
+		List<ResumenPeliculaDTO> peliculasResumidas = generoBuscado.getPeliculas().stream()
 				.map(p->{
-					PeliculaDTO peliculaDTO = peliculaMapper.peliculaToPeliculaDTO(p);
-					return peliculaDTO;
+					ResumenPeliculaDTO peliculaResumida = peliculaMapper.peliculaToResumenPeliculaDTO(p);
+					return peliculaResumida;
 				}).collect(Collectors.toList());
 		
-		return peliculas;
+		return peliculasResumidas;
 	}
 
 }

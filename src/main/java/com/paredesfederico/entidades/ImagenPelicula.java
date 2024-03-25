@@ -31,4 +31,5 @@ public class ImagenPelicula {
 	private Pelicula pelicula;
 	
 	
+	
 }

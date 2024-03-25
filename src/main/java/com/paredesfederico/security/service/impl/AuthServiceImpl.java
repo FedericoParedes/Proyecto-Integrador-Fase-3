@@ -2,6 +2,7 @@ package com.paredesfederico.security.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.paredesfederico.entidades.Rol;
 import com.paredesfederico.entidades.Usuario;
+import com.paredesfederico.enums.TipoRol;
+import com.paredesfederico.repository.IRolRepository;
 import com.paredesfederico.repository.IUsuarioRepository;
 import com.paredesfederico.security.dto.AuthResponse;
 import com.paredesfederico.security.dto.AuthenticationRequest;
@@ -31,6 +34,8 @@ public class AuthServiceImpl implements AuthService {
 	
 	private final AuthenticationManager authenticationManager;
 	
+	private final IRolRepository rolRepository;
+	
 	
 	
 	@Override	
@@ -38,11 +43,11 @@ public class AuthServiceImpl implements AuthService {
 	    
 		List<Rol> roles = new ArrayList<>();
 	    
-	    Rol rol = new Rol();
+        Optional<Rol> rol =  rolRepository.findByNombreRol(TipoRol.ROL_USER);
 	    
-	    rol.setNombreRol("ROLE_USER");
-	    
-	    roles.add(rol);
+        if(rol.isPresent()){
+        	roles.add(rol.get());
+        }
 	    
 	    var user = Usuario.builder()
 	    		.email(request.getEmail())
@@ -59,20 +64,17 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 
-
-	@Override
 	public AuthResponse authenticate(AuthenticationRequest request) {
 		
 		authenticationManager.authenticate(
 				
 				new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 		
-		var user = usuarioRepository.findUsuarioByEmail(request.getEmail()).orElseThrow();
+		var user = usuarioRepository.findByEmail(request.getEmail()).orElseThrow();
 		
 		var jwtToken = jwtService.generateToken(user);
 		
 		return AuthResponse.builder().token(jwtToken).build();
-	
 	}
 
 	

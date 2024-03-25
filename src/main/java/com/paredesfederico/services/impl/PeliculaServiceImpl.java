@@ -72,34 +72,19 @@ public class PeliculaServiceImpl implements IPeliculaService {
 	}
 
 	@Override
-	public List<PeliculaDTO> buscarPorTitulo(String titulo) {
+	public List<ResumenPeliculaDTO> buscarPorTitulo(String titulo) {
 		
 		List<Pelicula> peliculas = peliculaRepository.findByTituloContainingIgnoreCase(titulo);
 		
-		List<PeliculaDTO> peliculasDTO = peliculas.stream()
-				.map(p->{ PeliculaDTO peliculaDTO = peliculaMapper.peliculaToPeliculaDTO(p);
-				  return peliculaDTO;
+		List<ResumenPeliculaDTO> peliculasResumidas = peliculas.stream()
+				.map(p->{ ResumenPeliculaDTO peliculaResumida = peliculaMapper.peliculaToResumenPeliculaDTO(p);
+				  return peliculaResumida;
 				}).collect(Collectors.toList());	
 		// TODO Auto-generated method stub
-		return peliculasDTO;
+		return peliculasResumidas;
 	}
 
-	@Override
-	public List<PeliculaDTO> obtenerTodos() {
-		// TODO Auto-generated method stub
-		List<Pelicula> peliculas = peliculaRepository.findAll();
-		
-		List<PeliculaDTO> peliculasDTO = peliculas.stream()
-				.map(p->{
-					PeliculaDTO peliculaDTO = peliculaMapper.peliculaToPeliculaDTO(p);
-					return peliculaDTO;
-					
-				}).collect(Collectors.toList());
-		
-		
-		return peliculasDTO;
-	}
-
+	
 	@Override
 	public PeliculaDTO actualizarPelicula(Integer id, String movie, MultipartFile archivoImagen)  {
 		// TODO Auto-generated method stub
@@ -182,6 +167,20 @@ public class PeliculaServiceImpl implements IPeliculaService {
 		return estadoPeliculaElminada;
 		
 		
+	}
+
+	@Override
+	public List<ResumenPeliculaDTO> obtenerTodos() {
+		// TODO Auto-generated method stub
+       List<Pelicula> peliculas = peliculaRepository.findAll();
+		
+		List<ResumenPeliculaDTO> peliculasResumidas = peliculas.stream()
+				.map(p->{
+					ResumenPeliculaDTO peliculaResumida = peliculaMapper.peliculaToResumenPeliculaDTO(p);
+					return peliculaResumida;
+					
+				}).collect(Collectors.toList());
+		return peliculasResumidas;
 	}
 
 

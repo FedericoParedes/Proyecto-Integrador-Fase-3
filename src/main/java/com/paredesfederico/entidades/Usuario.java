@@ -54,9 +54,8 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		final var authorities = roles.stream()
-				.map(rol -> new SimpleGrantedAuthority(rol.getNombreRol()))
+				.map(rol -> new SimpleGrantedAuthority(rol.getNombreRol().name()))
 				.collect(Collectors.toList());
 		return authorities;
 	}
@@ -64,35 +63,30 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return getEmail();
 	}
 
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

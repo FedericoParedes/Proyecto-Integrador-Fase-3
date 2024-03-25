@@ -15,9 +15,9 @@ public interface IPeliculaService {
 
 	ResumenPeliculaDTO registrarPelicula (String movie, MultipartFile archivoImagen);
 	
-	List<PeliculaDTO> buscarPorTitulo(String titulo);
+	List<ResumenPeliculaDTO> buscarPorTitulo(String titulo);
 	
-	List<PeliculaDTO> obtenerTodos();
+	List<ResumenPeliculaDTO> obtenerTodos();
 	
 	PeliculaDTO actualizarPelicula(Integer id, String movie, MultipartFile archivoImagen) throws JsonMappingException, JsonProcessingException, IOException;
 	

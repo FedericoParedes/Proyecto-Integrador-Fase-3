@@ -9,7 +9,7 @@ import com.paredesfederico.entidades.Usuario;
 public interface IUsuarioRepository extends JpaRepository<Usuario, Long>{
 
 	
-	Optional<Usuario> findUsuarioByEmail(String email);
+	Optional<Usuario> findByEmail(String email);
 	
 	
 	
